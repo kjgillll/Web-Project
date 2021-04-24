@@ -88,14 +88,18 @@ def register():
 def dashboard(): 
     return render_template('dashboard.html', name=current_user.username)  
 
-@app.route('/tracker' , methods=['GET', 'POST'])
+@app.route('/tracker' , methods=['GET','POST'])
 @login_required
-def tracker(): 
-    data = request.form 
-    print(data) 
-    bs_logger = Record(userid=current_user.id,bloodsugar = data['BloodSugar'],insulinlevels=data['Insulin'],comments = data['comment']  )
-    db.session.add(bs_logger)
-    return render_template('tracker.html', name=current_user.username) 
+def tracker():  
+    if request.method == 'POST': 
+        data = request.form 
+        #print(data) 
+        bs_logger = Record(userid=current_user.id,bloodsugar = data['BloodSugar'],insulinlevels=data['Insulin'],comments = data['comment']  )
+        db.session.add(bs_logger) 
+        db.session.commit() 
+        return redirect(url_for('dashboard')) 
+    else:   
+        return render_template('tracker.html', name=current_user.username) 
 
 @app.route('/app')
 def client_app():
