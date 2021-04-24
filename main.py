@@ -92,8 +92,9 @@ def dashboard():
 @login_required
 def tracker(): 
     data = request.form 
-    #bs_loggger = R(id=current_identity.id,pid=data['pid'],name =data['name'],pokemon=Pokemon.query.get(data['pid'])  )
-    #db.session.add(capturedPokemon)
+    print(data) 
+    bs_logger = Record(userid=current_user.id,bloodsugar = data['BloodSugar'],insulinlevels=data['Insulin'],comments = data['comment']  )
+    db.session.add(bs_logger)
     return render_template('tracker.html', name=current_user.username) 
 
 @app.route('/app')
