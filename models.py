@@ -9,6 +9,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(120))
+    diabetestype = db.Column(db.String(20))
     records = db.relationship('Record', backref='user', lazy=True)
     
     def toDict(self):
@@ -17,7 +18,8 @@ class User(UserMixin, db.Model):
         "username": self.username,
         "email": self.email,
         "records": self.records,
-        "password": self.password
+        "password": self.password,
+        "diabetestype": self.diabetestype
       }
 
 
