@@ -55,10 +55,22 @@
         </div>
       </div> 
 
+      <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Time Period
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{{ url_for('readingsLog_OneWeek') }}">1 Week</a>
+                <a class="dropdown-item" href="{{ url_for('readingsLog_TwoWeek') }}">2 Weeks</a>
+                <a class="dropdown-item" href="{{ url_for('readingsLog_FourWeek') }}">Past Month</a>
+            </div>
+        </div>
       <table class="table">
             <thead class="thead-dark">
                 <tr>
-                <th scope="col">#</th>
+                <th scope="col">#</th> 
+                <th scope="col">Date</th> 
+                <th scope="col">Time</th>
                 <th scope="col">Blood Glucose Level</th>
                 <th scope="col">Insulin</th>
                 <th scope="col">Activity</th> 
@@ -68,10 +80,12 @@
             <tbody>
                {% for row in logs %}
                         <tr>
-                          <td>{{row.id}}</td>
+                          <td>{{row.id}}</td> 
+                          <td>{{row.date}}</td> 
+                          <td>{{row.time}}</td>
                           <td>{{row.bs}}</td>
                           <td>{{row.insulin}}</td> 
-                          <td></td> 
+                          <td>{{row.activity}}</td> 
                           <td>{{row.comment}}</td> 
                         </tr>   
                       {% endfor %}

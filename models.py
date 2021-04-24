@@ -28,7 +28,8 @@ class Record(db.Model):
     userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
     bloodsugar = db.Column(db.Integer, nullable = False)
-    insulinlevels = db.Column(db.Integer, nullable = True)
+    insulinlevels = db.Column(db.Integer, nullable = True)  
+    activity = db.Column(db.Integer, nullable = True)
     comments = db.Column(db.String(255), nullable = True)
 
     def toDict(self):
@@ -37,7 +38,8 @@ class Record(db.Model):
             "userid": self.userid,
             'created': self.created.strftime("%m/%d/%Y, %H:%M:%S"),
             "bloodsugar": self.bloodsugar,
-            "insulinlevels": self.insulinlevels,
+            "insulinlevels": self.insulinlevels, 
+            "insulinlevels": self.activity,
             "comments": self.comments           
         }  
 

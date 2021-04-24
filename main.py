@@ -7,7 +7,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField,SelectField
 from wtforms.validators import InputRequired,Email,Length 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user 
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user  
+from datetime import datetime, timedelta
 
 from models import db, User, Record, Log
 
@@ -96,7 +97,7 @@ def tracker():
     if request.method == 'POST': 
         data = request.form 
         #print(data) 
-        bs_logger = Record(userid=current_user.id,bloodsugar = data['BloodSugar'],insulinlevels=data['Insulin'],comments = data['comment']  )
+        bs_logger = Record(userid=current_user.id,bloodsugar = data['BloodSugar'],insulinlevels=data['Insulin'],activity=data['activity'],comments = data['comment']  )
         db.session.add(bs_logger) 
         db.session.commit() 
         return redirect(url_for('dashboard')) 
@@ -110,16 +111,101 @@ def readingsLog():
     userLogs = Record.query.filter_by(userid=current_user.id).all() 
     userLog = []  
     x = {}
-    for log in userLogs:
+    for log in userLogs: 
+        date = log.created.date() 
+        time = log.created - timedelta(hours=4)
+        time = time.strftime("%H:%M")
+
         x = { 
-        "id": log.rid, 
-        "bs": log.bloodsugar, 
-        "insulin": log.insulinlevels, 
-        "comment": log.comments, 
+            "id": log.rid,  
+            "date": date,   
+            "time": time,  
+            "activity": log.activity,
+            "bs": log.bloodsugar, 
+            "insulin": log.insulinlevels,  
+            "comment": log.comments, 
+        }
+        userLog.append(x)  
+
+    return render_template('log.html', name=current_user.username,logs=userLog)   
+
+@app.route('/log',methods=['GET'])
+@login_required
+def readingsLog_OneWeek():    
+    current_time = datetime.datetime.utcnow()
+    one_weeks_ago = current_time - datetime.timedelta(weeks=1)
+    userLogs = Record.query.filter_by(userid=current_user.id).filter(created > one_weeks_ago).all() 
+    userLog = []  
+    x = {}
+    for log in userLogs: 
+        date = log.created.date() 
+        time = log.created - timedelta(hours=4)
+        time = time.strftime("%H:%M")
+
+        x = { 
+            "id": log.rid,  
+            "date": date,   
+            "time": time,  
+            "activity": log.activity,
+            "bs": log.bloodsugar, 
+            "insulin": log.insulinlevels,  
+            "comment": log.comments, 
         }
         userLog.append(x)  
 
     return render_template('log.html', name=current_user.username,logs=userLog)  
+    
+@app.route('/log',methods=['GET'])
+@login_required
+def readingsLog_TwoWeek():    
+    current_time = datetime.datetime.utcnow()
+    two_weeks_ago = current_time - datetime.timedelta(weeks=2)
+    userLogs = Record.query.filter_by(userid=current_user.id).filter(created > two_weeks_ago).all() 
+    userLog = []  
+    x = {}
+    for log in userLogs: 
+        date = log.created.date() 
+        time = log.created - timedelta(hours=4)
+        time = time.strftime("%H:%M")
+
+        x = { 
+            "id": log.rid,  
+            "date": date,   
+            "time": time,  
+            "activity": log.activity,
+            "bs": log.bloodsugar, 
+            "insulin": log.insulinlevels,  
+            "comment": log.comments, 
+        }
+        userLog.append(x)  
+
+    return render_template('log.html', name=current_user.username,logs=userLog)  
+    
+@app.route('/log',methods=['GET'])
+@login_required
+def readingsLog_FourWeek():    
+    current_time = datetime.datetime.utcnow()
+    four_weeks_ago = current_time - datetime.timedelta(weeks=4)
+    userLogs = Record.query.filter_by(userid=current_user.id).filter(created > four_weeks_ago).all() 
+    userLog = []  
+    x = {}
+    for log in userLogs: 
+        date = log.created.date() 
+        time = log.created - timedelta(hours=4)
+        time = time.strftime("%H:%M")
+
+        x = { 
+            "id": log.rid,  
+            "date": date,   
+            "time": time,  
+            "activity": log.activity,
+            "bs": log.bloodsugar, 
+            "insulin": log.insulinlevels,  
+            "comment": log.comments, 
+        }
+        userLog.append(x)  
+
+    return render_template('log.html', name=current_user.username,logs=userLog) 
 
 @app.route('/app')
 def client_app():
