@@ -86,7 +86,12 @@ def register():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html', name=current_user.username) 
+    return render_template('dashboard.html', name=current_user.username)  
+
+@app.route('/tracker')
+@login_required
+def tracker():
+    return render_template('tracker.html', name=current_user.username) 
 
 @app.route('/app')
 def client_app():
