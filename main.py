@@ -46,7 +46,7 @@ class RegisterForm(FlaskForm):
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-    diabetesType = SelectField('diabetes type', choices = diabetic_choices, validators=[InputRequired()])
+    #diabetesType = SelectField('diabetes type', choices = diabetic_choices, validators=[InputRequired()])
 ''' End Boilerplate Code '''
 
 @app.route('/')
@@ -75,7 +75,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password, diabetesType=form.diabetesType.data)
+        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password) #diabetesType=form.diabetesType.data)
         db.session.add(new_user)
         db.session.commit()
 
