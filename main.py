@@ -85,12 +85,15 @@ def register():
 
 @app.route('/dashboard')
 @login_required
-def dashboard():
+def dashboard(): 
     return render_template('dashboard.html', name=current_user.username)  
 
-@app.route('/tracker')
+@app.route('/tracker' , methods=['GET', 'POST'])
 @login_required
-def tracker():
+def tracker(): 
+    data = request.form 
+    #bs_loggger = R(id=current_identity.id,pid=data['pid'],name =data['name'],pokemon=Pokemon.query.get(data['pid'])  )
+    #db.session.add(capturedPokemon)
     return render_template('tracker.html', name=current_user.username) 
 
 @app.route('/app')

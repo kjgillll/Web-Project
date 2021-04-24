@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
 
 
 class Record(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    rid = db.Column(db.Integer, primary_key=True)
     userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow, nullable=False)
     bloodsugar = db.Column(db.Integer, nullable = False)
@@ -37,7 +37,19 @@ class Record(db.Model):
             "bloodsugar": self.bloodsugar,
             "insulinlevels": self.insulinlevels,
             "comments": self.comments           
-        }
+        }  
+
+class Log(db.Model):
+  lid = db.Column('lid', db.Integer, primary_key=True)
+  id = db.Column('id', db.Integer, db.ForeignKey('user.id'))
+  rid = db.Column('pid', db.Integer, db.ForeignKey('record.rid'))
+  log = db.relationship('Record')
+
+  def toDict(self):
+    return{
+      'log':self.record.toDict()
+    }
+
 
 # class Logs(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
