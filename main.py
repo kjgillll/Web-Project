@@ -99,7 +99,25 @@ def tracker():
         db.session.commit() 
         return redirect(url_for('dashboard')) 
     else:   
-        return render_template('tracker.html', name=current_user.username) 
+        return render_template('tracker.html', name=current_user.username)  
+
+        
+@app.route('/log',methods=['GET'])
+@login_required
+def readingsLog():  
+    userLogs = Record.query.filter_by(userid=current_user.id).all() 
+    userLog = []  
+    x = {}
+    for log in userLogs:
+        x = { 
+        "id": log.rid, 
+        "bs": log.bloodsugar, 
+        "insulin": log.insulinlevels, 
+        "comment": log.comments, 
+        }
+        userLog.append(x)  
+
+    return render_template('log.html', name=current_user.username,logs=userLog)  
 
 @app.route('/app')
 def client_app():
