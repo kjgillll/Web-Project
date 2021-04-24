@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from sqlalchemy.exc import IntegrityError
 from flask_wtf import FlaskForm 
-from wtforms import StringField, PasswordField, BooleanField 
+from wtforms import StringField, PasswordField, BooleanField,SelectField
 from wtforms.validators import InputRequired,Email,Length 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user 
@@ -41,10 +41,12 @@ class LoginForm(FlaskForm):
     remember = BooleanField('remember me')
 
 class RegisterForm(FlaskForm):
+    diabetic_choices = [(1,"Non-diabetic"),(2,"Pre-diabetic"),(3,"Type1"),(4,"Type2")]
+
     email = StringField('email', validators=[InputRequired(), Email(message='Invalid email'), Length(max=50)])
     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
-
+    diabetesType = SelectField('diabetes type', choices = diabetic_choices, validators=[InputRequired()])
 ''' End Boilerplate Code '''
 
 @app.route('/')
@@ -73,7 +75,7 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password, diabetesType=form.diabetesType.data)
         db.session.add(new_user)
         db.session.commit()
 
