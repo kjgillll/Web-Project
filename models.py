@@ -8,7 +8,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
-    password = db.Column(db.String(80))
+    password = db.Column(db.String(120))
 
 # class Logs(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
@@ -23,3 +23,13 @@ class User(UserMixin, db.Model):
 #             'stream': self.stream,
 #             'created': self.created.strftime("%m/%d/%Y, %H:%M:%S")
 #         }
+class Record(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) 
+    datetime = db.Column(db.DateTime,nullable = False)
+    bloodsugar = db.Column(db.Integer, nullable = False)
+    insulinlevels = db.Column(db.Integer, nullable = True)
+    comments = db.Column(db.String(255), nullable = True)
+
+
+
