@@ -9,4 +9,3 @@ Please use the Gitpod if the deployed version has user login issues. Then run py
 Login Credentials for bob & bobpass:<br>
 Username: bobbert<br>
 Password: bobpassword<br>
-It should work since you are considered a contributor.
