@@ -11,7 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet"> 
-    <link href="{{ url_for('static', filename='/assets/js/vendor/popper.min.js') }}" rel="stylesheet"> 
+    <link href="{{ url_for('static', filename='../assets/js/vendor/popper.min.js') }}" rel="stylesheet"> 
     <link rel="stylesheet" href="{{url_for('.static', filename='home.css')}}">
 
     <!-- Custom styles for this template -->
@@ -28,8 +28,8 @@
           <nav class="nav nav-masthead justify-content-center">
             <a class="nav-link active" href="/">Home</a>
             <a class="nav-link" href="{{ url_for('about') }}">About</a>
-            <a href="{{ url_for('login') }}" class="nav-link" href="/login">Login</a> 
-            <a href="{{ url_for('register') }}" class="nav-link" href="#">Register</a>
+            <a href="{{ url_for('login') }}" class="nav-link">Login</a> 
+            <a href="{{ url_for('register') }}" class="nav-link">Register</a>
           </nav> 
         </div>
       </header>
