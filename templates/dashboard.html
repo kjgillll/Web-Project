@@ -36,7 +36,7 @@
             <a class="nav-link" href="{{ url_for('readingsLog') }}">Readings Log</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" href="#">Statistics</a>
+            <a class="nav-link" href="{{ url_for('stats') }}">Statistics</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -66,7 +66,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Enter Today's Readings</h4>
                     <p class="card-text">Enter your blood sugar levels and daily activities here.</p>
-                    <a href="/tracker" class="btn btn-primary">Go To Tracker</a>
+                    <a href="{{ url_for('tracker') }}" class="btn btn-primary">Go To Tracker</a>
                 </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <h4 class="card-title">View History</h4>
                     <p class="card-text">View your blood sugar history.</p>
-                    <a href="/log" class="btn btn-primary">Go to Readings History</a>
+                    <a href="{{ url_for('readingsLog') }}" class="btn btn-primary">Go to Readings History</a>
                 </div>
              </div> 
           </div>
@@ -86,7 +86,7 @@
                 <div class="card-body">
                     <h4 class="card-title">View Statistics</h4>
                     <p class="card-text">Check graphs of your recorded sugar levels.</p>
-                    <a href="#" class="btn btn-primary">Go to Statistics</a>
+                    <a href="{{ url_for('stats') }}" class="btn btn-primary">Go to Statistics</a>
                 </div>
             </div>
           </div>
