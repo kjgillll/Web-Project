@@ -19,7 +19,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="/dashboard"><img src="/images/icon.png" alt="blood sugar tracker" width="25" height="25"></img> Blood Sugar Tracker</a>
+      <a class="navbar-brand" href="{{ url_for('dashboard') }}"><img src="/images/icon.png" alt="blood sugar tracker" width="25" height="25"></img> Blood Sugar Tracker</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -40,7 +40,7 @@
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
+            <a href="{{ url_for('logout') }}" class="btn btn-outline-success my-2 my-sm-0" role="button">Log Out</a>
         </form>
       </div>
     </nav>
@@ -93,7 +93,6 @@
         </div>
 
       </div> <!-- /container -->
-
     </main>
 
     <!-- Bootstrap core JavaScript
@@ -120,36 +119,5 @@
       feather.replace()
     </script>
 
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
   </body>
 </html>
