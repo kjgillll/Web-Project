@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="icon" href="https://i.dlpng.com/static/png/6654392_preview.png">
 
     <title>Tracker</title>
 
@@ -19,7 +19,7 @@
   <body>
 
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="/dashboard"><img src="https://i.dlpng.com/static/png/6654392_preview.png" alt="blood sugar tracker" width="25" height="25"></img> Blood Sugar Tracker</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -51,12 +51,13 @@
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">Welcome Back, {{name}}! </h1>
-          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+          
         </div>
       </div>
 
       <div class="container">
+          <h3>Here's some things you can do today:</h3>
+          <p></p>
         <!-- Example row of columns -->
         <div class="row">
           <div class="col-md-4">
@@ -64,8 +65,8 @@
                 <img class="card-img-top" src="{{url_for('.static', filename='images/writing.jpg')}}" alt="Card image" width="300px" height="200px">
                 <div class="card-body">
                     <h4 class="card-title">Enter Today's Readings</h4>
-                    <p class="card-text">Some example text.</p>
-                    <a href="#" class="btn btn-primary">Go To Tracker</a>
+                    <p class="card-text">Enter your blood sugar levels and daily activities here.</p>
+                    <a href="/tracker" class="btn btn-primary">Go To Tracker</a>
                 </div>
             </div>
           </div>
@@ -74,8 +75,8 @@
                 <img class="card-img-top" src="{{url_for('.static', filename='images/tracker.jpg')}}" alt="Card image" width="300px" height="200px">
                 <div class="card-body">
                     <h4 class="card-title">View History</h4>
-                    <p class="card-text">Some example text.</p>
-                    <a href="#" class="btn btn-primary">Go to Readings History</a>
+                    <p class="card-text">View your blood sugar history.</p>
+                    <a href="/log" class="btn btn-primary">Go to Readings History</a>
                 </div>
              </div> 
           </div>
@@ -84,7 +85,7 @@
                 <img class="card-img-top" src="{{url_for('.static', filename='images/graph.jpg')}}" alt="Card image" width="300px" height="200px">
                 <div class="card-body">
                     <h4 class="card-title">View Statistics</h4>
-                    <p class="card-text">Some example text.</p>
+                    <p class="card-text">Check graphs of your recorded sugar levels.</p>
                     <a href="#" class="btn btn-primary">Go to Statistics</a>
                 </div>
             </div>
