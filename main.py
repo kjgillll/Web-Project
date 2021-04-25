@@ -7,8 +7,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField,SelectField
 from wtforms.validators import InputRequired,Email,Length 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user  
-from datetime import datetime, timedelta
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user   
+import datetime
+from datetime import  timedelta
 
 from models import db, User, Record, Log
 
@@ -212,16 +213,18 @@ def readingsLog_FourWeek():
 def stats():  
     current_time = datetime.datetime.utcnow()
     one_weeks_ago = current_time - datetime.timedelta(weeks=1)
-    userLogs = Record.query.filter_by(userid=current_user.id).filter(created > one_weeks_ago).all() 
+    userLogs = Record.query.filter_by(userid=current_user.id).filter(Record.created > one_weeks_ago).all() 
     logDates = [] 
     logBS = []  
     for log in userLogs: 
-        date = log.created.date() 
+        date = log.created.date()  
+        date = date.strftime("%d/%m/%Y")
 
-        logDates.append(log.date) 
+        logDates.append(date) 
         logBS.append(log.bloodsugar) 
 
-
+    print(logDates) 
+    print(logBS)
     return render_template('stats.html', logBS = logBS, logDates=logDates)  
 
 @app.route('/app')

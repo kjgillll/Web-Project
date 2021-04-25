@@ -67,9 +67,9 @@
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: "{{ logDates }}",
+          labels: {{logDates}} ,
           datasets: [{
-            data: '{{logBS}}',
+            data: {{logBS}},
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
