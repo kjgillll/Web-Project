@@ -46,9 +46,13 @@
     </nav>
 
     <main role="main">  
-        <div class="jumbotron"></div>
-            <div class="container">
-        </div> 
+        
+       <div class="jumbotron text-center">
+        <div class="container"> 
+            <h3 class="display-4">My Statistics </h3>
+            <p>Keeping track of your blood glucose levels is essential to prevent complications.</p>
+        </div>
+      </div>  
 
         <canvas class="my-3" id="myChart" width="400" height="150"></canvas>
     </main>
@@ -72,14 +76,15 @@
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
         type: 'line',
-        data: {
+        data: { 
           labels : djangoData.name.split(','), 
-          datasets: [{
+          datasets: [{ 
+            label: "Line Chart Showing Daily Blood Sugar Readings",
             data: djangoData.other,
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
-            borderWidth: 4,
+            borderWidth: 2,
             pointBackgroundColor: '#007bff'
           }]
         },

@@ -20,13 +20,12 @@ def create_app():
   app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
   app.config['SECRET_KEY'] = "MYSECRET"
-  CORS(app)
+  CORS(app) 
   db.init_app(app) 
   
   return app
 
 app = create_app()
-
 app.app_context().push()    
 
 login_manager = LoginManager()

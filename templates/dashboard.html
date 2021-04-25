@@ -51,12 +51,12 @@
       <div class="jumbotron">
         <div class="container">
           <h1 class="display-3">Welcome Back, {{name}}! </h1>
-          
+          <p>We’ve created blood sugar logger that make it easy to document your daily levels by time of day, along with any relevant notes.</p>
         </div>
       </div>
 
       <div class="container">
-          <h3>Here's some things you can do today:</h3>
+          <h3>Here's some things you can do today:</h3> 
           <p></p>
         <!-- Example row of columns -->
         <div class="row">
@@ -75,7 +75,7 @@
                 <img class="card-img-top" src="{{url_for('.static', filename='images/tracker.jpg')}}" alt="Card image" width="300px" height="200px">
                 <div class="card-body">
                     <h4 class="card-title">View History</h4>
-                    <p class="card-text">View your blood sugar history.</p>
+                    <p class="card-text">View your blood sugar history and activities here.</p>
                     <a href="{{ url_for('readingsLog') }}" class="btn btn-primary">Go to Readings History</a>
                 </div>
              </div> 
@@ -102,22 +102,7 @@
     <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
     <script src="../../../../assets/js/vendor/popper.min.js"></script>
     <script src="../../../../dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-
-    <!-- Icons -->
-    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-    <script>
-      feather.replace()
-    </script>
 
   </body>
 </html>
