@@ -136,8 +136,8 @@ def readingsLog():
 @app.route('/log',methods=['GET'])
 @login_required
 def readingsLog_OneWeek():    
-    current_time = datetime.datetime.utcnow()
-    one_weeks_ago = current_time - datetime.timedelta(weeks=1)
+    current_time = datetime.datetime.utcnow() 
+    one_weeks_ago = current_time - datetime.timedelta(weeks=1) 
     userLogs = Record.query.filter_by(userid=current_user.id).filter(created > one_weeks_ago).all() 
     userLog = []  
     x = {}
@@ -209,7 +209,24 @@ def readingsLog_FourWeek():
         }
         userLog.append(x)  
 
-    return render_template('log.html', name=current_user.username,logs=userLog) 
+    return render_template('log.html', name=current_user.username,logs=userLog)  
+
+@app.route('/stats',methods=['GET'])
+@login_required
+def stats():  
+    current_time = datetime.datetime.utcnow()
+    one_weeks_ago = current_time - datetime.timedelta(weeks=1)
+    userLogs = Record.query.filter_by(userid=current_user.id).filter(created > one_weeks_ago).all() 
+    logDates = [] 
+    logBS = []  
+    for log in userLogs: 
+        date = log.created.date() 
+
+        logDates.append(log.date) 
+        logBS.append(log.bloodsugar) 
+
+
+    return render_template('stats.html', logBS = logBS, logDates=logDates)  
 
 @app.route('/app')
 def client_app():
