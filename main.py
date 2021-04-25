@@ -229,7 +229,14 @@ def stats():
 
     print(logDates) 
     print(logBS)
-    return render_template('stats.html', logBS = logBS, logDates=logDates)  
+    return render_template('stats.html', logBS = logBS, logDates=logDates)   
+
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.route('/app')
 def client_app():
